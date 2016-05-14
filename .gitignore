@@ -16,6 +16,7 @@ war/WEB-INF/appengine-generated/
 /bin/
 target/
 .gradle/
+.project/
  
 # OS Files #
 .DS_Store
