@@ -16,7 +16,6 @@ war/WEB-INF/appengine-generated/
 /bin/
 target/
 .gradle/
-.project/
  
 # OS Files #
 .DS_Store
@@ -68,6 +67,7 @@ local.properties
 # External tool builders
 .externalToolBuilders/
 .classpath
+.project
  
 # Locally stored "Eclipse launch configurations"
 *.launch
