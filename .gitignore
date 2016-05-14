@@ -2,6 +2,7 @@
 
 # Package Files #
 *.war
+*.jar
 
 # boilerplate generated classes #
 .apt_generated/
