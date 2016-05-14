@@ -1,0 +1,49 @@
+apply plugin: 'war'
+apply plugin: 'appengine'
+
+project.webAppDirName = 'war'
+
+def appEmail  = "YOUR_GOOGLE_ACCOUNT_EMAIL_ADDRESS"		
+
+def appengineVersion = "1.9.19"
+
+sourceSets {
+    main {
+        java { srcDir 'src/java' }
+    }
+    test {  
+      java { srcDir 'src/javatests'}
+    } 
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.google.appengine:gradle-appengine-plugin:1.9.19"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	appengineSdk "com.google.appengine:appengine-java-sdk:${appengineVersion}"
+	compile "javax.servlet:servlet-api:2.5"
+	compile "com.google.appengine:appengine-api-1.0-sdk:${appengineVersion}"
+}
+
+appengine {
+
+    httpPort = 8888
+    downloadSdk = true
+
+    appcfg {
+    
+        email = "${appEmail}"
+		noCookies = true
+		oauth2 = true
+    }
+}
