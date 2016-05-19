@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+.a-size-base {
+    font-size: 13px!important;
+    line-height: 19px!important;
+}
+
+.a-color-price {
+    color: #b12704!important;
+}

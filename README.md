@@ -8,18 +8,20 @@ From the gradle task console, run appengineRun
 From the gradle task console, run appengineStop
 
 # To see all the tasks
-gradle tasks
+gradlew tasks
 
 # Running the Local Dev Server
-gradle appengineRun
+gradlew appengineRun
 
 # To stop the server
-gradle appengineStop
+gradlew appengineStop
 
 # Deploying to App Engine
-gradle appengineUpdate
+gradlew appengineUpdate
 
 # More detials
 https://github.com/GoogleCloudPlatform/gradle-appengine-plugin
 
-
+# When you want to reload classes do a "./gradlew customReload" it will pull any changes you made
+# in to your classes and your webapp files (html/css/js and excluding the WEB-INF dir).
+gradlew customReload
