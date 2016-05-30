@@ -39,7 +39,7 @@ public class BookEndpoint {
 
 		try {
 			mgr = getEntityManager();
-			Query query = mgr.createQuery("select b from Book b", Book.class);
+			Query query = mgr.createQuery("SELECT b FROM Book b", Book.class);
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				query.setHint(JPACursorHelper.CURSOR_HINT, cursor);
@@ -50,7 +50,7 @@ public class BookEndpoint {
 			}
 
 			execute = query.getResultList();
-			if (execute.size() == limit) {
+			if (limit != null && execute != null && execute.size() == limit) {
 				cursor = JPACursorHelper.getCursor(execute);
 				if (cursor != null) {
 					cursorString = cursor.toWebSafeString();

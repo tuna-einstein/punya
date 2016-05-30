@@ -1,11 +1,11 @@
 apply plugin: 'war'
 apply plugin: 'appengine'
 
-project.webAppDirName = 'war'
-
 def appEmail  = "umasankar.usp@gmail.com"		
 
 def appengineVersion = "1.9.28"
+
+project.webAppDirName = 'webapp'
 
 sourceSets {
     main {
@@ -17,8 +17,12 @@ sourceSets {
     } 
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+
+compileJava {
+  sourceCompatibility = JavaVersion.VERSION_1_7
+  targetCompatibility = JavaVersion.VERSION_1_7
+  options.bootClasspath = "${System.getProperty('java.home')}/lib/rt.jar"
+}
 
 buildscript {
     repositories {
@@ -26,7 +30,6 @@ buildscript {
     }
     dependencies {
         classpath "com.google.appengine:gradle-appengine-plugin:1.9.19"
-        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.7.7'
     }
 }
 
@@ -74,27 +77,4 @@ appengine {
         getClientLibsOnBuild = true
         getDiscoveryDocsOnBuild = true
     }
-}
-
-
-// Reload tasks
-
-import com.google.appengine.AppEnginePlugin
-
-task reloadClasses (type: Copy) {
-  from sourceSets.main.output
-  into "${AppEnginePlugin.getExplodedAppDirectory(project)}/WEB-INF/classes"
-
-  dependsOn classes
-}
-
-task reloadWebAppDir (type: Copy) {
-  from (project.convention.getPlugin(WarPluginConvention).webAppDir) {
-    exclude "WEB-INF/*"
-  }
-  into AppEnginePlugin.getExplodedAppDirectory(project)
-}
-
-task customReload {
-  dependsOn reloadClasses, reloadWebAppDir
 }
