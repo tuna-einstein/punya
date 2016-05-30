@@ -18,7 +18,10 @@
 	type="text/javascript"></script>
 
 <link rel="stylesheet" href="css/mycss.css">
+<script type="text/javascript" src="js/endpoint.js"></script>
 <script src="js/myjs.js"></script>
+
+
 </head>
 
 <body>
@@ -119,26 +122,25 @@
 
 					</ul>
 
-					<br /> <input type="button" value="Add team member?" data-icon="plus"
-						id="btn_add_devotee" />
+					<br /> <input type="button" value="Add team member?"
+						data-icon="plus" id="btn_add_devotee" />
 				</div>
 
 				<div data-role="collapsible">
 					<h3>Laxmi collected</h3>
 					<ul data-role="listview" id="list_currency" data-split-theme="b"
 						data-split-icon="delete">
-						<li id='currency_id_0'>
-						<a>
+						<li id='currency_id_0'><a>
 								<div class="ui-grid-a">
 									<div class="ui-block-a">
 										<input type="number" value="0" id="currency_value_0" />
 									</div>
-									<div class="ui-block-b"><input type="button" value="USD"></div>
+									<div class="ui-block-b">
+										<input type="button" value="USD">
+									</div>
 
 								</div>
-								</a>
-								<a data-icon="none"></a>
-						</li>
+						</a> <a data-icon="none"></a></li>
 					</ul>
 					<br> <a href="#" id="btn_add_currency" data-role="button"
 						data-icon="plus">Non USD?</a>
@@ -175,4 +177,11 @@
 	</div>
 	<!-- Dialog to pick currency -->
 </body>
+
+<script type="text/javascript">
+        function init() {
+            usp.punya.init('//' + window.location.host + '/_ah/api');
+        }
+</script>
+<script src="https://apis.google.com/js/client.js?onload=init"></script>
 </html>

@@ -1,12 +1,10 @@
 package com.usp.punya.server.backend;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
 import com.google.api.server.spi.config.Api;
@@ -15,10 +13,11 @@ import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
-import com.google.appengine.datanucleus.query.JDOCursorHelper;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
-@Api(name = "bookendpoint", namespace = @ApiNamespace(ownerDomain = "usp.com", ownerName = "usp.com", packagePath = "book.entity"))
+@Api(name = "bookendpoint",
+version = "v1",
+namespace = @ApiNamespace(ownerDomain = "usp.com", ownerName = "usp.com", packagePath = "book.entity"))
 public class BookEndpoint {
 
 	/**
@@ -29,7 +28,7 @@ public class BookEndpoint {
 	 *         persisted and a cursor to the next page.
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	@ApiMethod(name = "listBook")
+	@ApiMethod(name = "listBooks")
 	public CollectionResponse<Book> listBook(@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
