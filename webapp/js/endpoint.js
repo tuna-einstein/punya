@@ -13,22 +13,34 @@ usp.punya.SCOPES =
  */
 usp.punya.signedIn = false;
 
+usp.punya.BOOKS = [];
+
 
 /**
  * Lists Books via the API.
  */
-usp.punya.listBooks = function() {
+usp.punya.loadData = function() {
 	console.log(gapi.client);
-	gapi.client.bookendpoint.listBooks().execute(
+	var listBooks = $.Deferred();
+
+	gapi.client.bookendpoint.listBooks().then(
 			function(resp) {
-				console.log(resp);
-				if (!resp.code) {
-					resp.items = resp.items || [];
-					for (var i = 0; i < resp.items.length; i++) {
-						console.log(resp.items[i]);
-					}
+				//console.log(resp);
+				if (resp.status == 200) {
+					console.log(resp.body);
+					listBooks.resolve(jQuery.parseJSON(resp.body));
+				} else {
+					listBooks.reject(resp);
 				}
 			});
+	
+	$.when(listBooks).done(function(result1) {
+		usp.punya.BOOKS = result1.items || [];
+		//console.log(result1);
+		$.mobile.changePage("#page_report");
+	}).fail(function(failResult) {
+		console.log(failResult)
+	});
 };
 
 /**
@@ -41,7 +53,7 @@ usp.punya.init = function(apiRoot) {
 	var apisToLoad;
 	var callback = function() {
 		if (--apisToLoad == 0) {
-			usp.punya.listBooks();
+			usp.punya.loadData();
 		}
 		console.log(apisToLoad);
 	}
