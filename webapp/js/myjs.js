@@ -49,13 +49,15 @@ $(document).on("pageinit", "#page_report", function() {
 	updateBookOptions = function() {
 		bookOptions = "";
 		console.log("uma");
-		for (var i = 0; i < usp.punya.BOOKS.length; i++) {
-			bookOptions = bookOptions +
-					String.format('<li><a href="#" class="my-book-item" data-rel="dialog"'
-							+ 'data-id="{0}" data-title="{1}">{1}</a></li>',
-							usp.punya.BOOKS[i].id, usp.punya.BOOKS[i].title);
-		}
-		$('#page_report #list_books').empty().append(bookOptions).listview('refresh');
+		usp.punya.listBooks().done(function(books){
+			for (var i = 0; i < books.length; i++) {
+				bookOptions = bookOptions +
+						String.format('<li><a href="#" class="my-book-item" data-rel="dialog"'
+								+ 'data-id="{0}" data-title="{1}">{1}</a></li>',
+								books[i].id, books[i].title);
+			}
+			$('#page_report #list_books').empty().append(bookOptions).listview('refresh');
+		});
 	};
 	
 	updateBookOptions();

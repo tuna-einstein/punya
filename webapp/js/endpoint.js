@@ -13,8 +13,11 @@ usp.punya.SCOPES =
  */
 usp.punya.signedIn = false;
 
-usp.punya.BOOKS = [];
+usp.punya.BOOKS = $.Deferred();
 
+usp.punya.listBooks = function() {
+	return usp.punya.BOOKS.promise();
+};
 
 /**
  * Lists Books via the API.
@@ -35,7 +38,7 @@ usp.punya.loadData = function() {
 			});
 	
 	$.when(listBooks).done(function(result1) {
-		usp.punya.BOOKS = result1.items || [];
+		usp.punya.BOOKS.resolve(result1.items || []);
 		//console.log(result1);
 		$.mobile.changePage("#page_report");
 	}).fail(function(failResult) {
