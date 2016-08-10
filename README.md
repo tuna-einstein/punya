@@ -1,11 +1,14 @@
 # How to import to eclipse?
-Eclipse -> File -> Import -> gradle -> gradle project
+./gradlew eclipseWtp
+Eclipse -> File -> Import -> General -> Existing Projects into Workspace
+Choose punya folder
+
+Right click on project -> Properties -> Project Facets 
+Check 'Dynamic Web Module', ' Google App Engine', 'Java' and 'JPA'.
+Follow, https://cloud.google.com/appengine/docs/java/webtoolsplatform
 
 # How to run in eclipse?
-From the gradle task console, run appengineRun
-
-# How to stop the server in eclipse?
-From the gradle task console, run appengineStop
+Right click on project -> Run as -> Run on Server -> App Engine
 
 # To see all the tasks
 ./gradlew tasks

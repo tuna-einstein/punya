@@ -1,0 +1,168 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://mypunya100.appspot.com/_ah/api",
+  "name" : "bookendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://mypunya100.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "usp.com",
+  "ownerName" : "usp.com",
+  "packagePath" : "book.entity",
+  "methods" : {
+    "bookendpoint.removeBook" : {
+      "path" : "book/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com" ],
+      "clientIds" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.removeBook",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "bookendpoint.listBooks" : {
+      "path" : "book",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com" ],
+      "clientIds" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.listBook",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bookendpoint.getBook" : {
+      "path" : "book/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com" ],
+      "clientIds" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.getBook",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "bookendpoint.insertBook" : {
+      "path" : "book",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com" ],
+      "clientIds" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.insertBook",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "CollectionResponse_Book" : {
+        "id" : "CollectionResponse_Book",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Book"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Book" : {
+        "id" : "Book",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.usp.punya.server.backend.BookEndpoint.removeBook" : {
+      },
+      "com.usp.punya.server.backend.BookEndpoint.listBook" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Book"
+        }
+      },
+      "com.usp.punya.server.backend.BookEndpoint.getBook" : {
+        "response" : {
+          "$ref" : "Book"
+        }
+      },
+      "com.usp.punya.server.backend.BookEndpoint.insertBook" : {
+        "request" : {
+          "$ref" : "Book"
+        },
+        "response" : {
+          "$ref" : "Book"
+        }
+      }
+    }
+  }
+}

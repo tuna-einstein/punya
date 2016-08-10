@@ -1,5 +1,7 @@
 apply plugin: 'war'
 apply plugin: 'appengine'
+apply plugin: 'eclipse-wtp'
+
 
 def appEmail  = "umasankar.usp@gmail.com"		
 

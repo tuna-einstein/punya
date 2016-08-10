@@ -6,8 +6,6 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
 
-
-
 	<servlet>
 		<servlet-name>Punya</servlet-name>
 		<servlet-class>com.usp.punya.server.PunyaServlet</servlet-class>
@@ -29,8 +27,19 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 			<param-value>com.usp.punya.server.backend.BookEndpoint</param-value>
 		</init-param>
 	</servlet>
+	<servlet>
+		<description>
+		Sample Servlet</description>
+		<display-name>PunyaServlet</display-name>
+		<servlet-name>PunyaServlet</servlet-name>
+		<servlet-class>com.example.myproject.PunyaServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<url-pattern>/_ah/spi/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PunyaServlet</servlet-name>
+		<url-pattern>/punya</url-pattern>
 	</servlet-mapping>
 </web-app>

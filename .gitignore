@@ -4,6 +4,8 @@
 *.war
 *.jar
 
+.idea/
+
 # boilerplate generated classes #
 .apt_generated/
 

@@ -7,16 +7,26 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import com.google.api.server.spi.auth.common.User;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 import com.google.api.server.spi.config.Named;
 import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
+import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
 @Api(name = "bookendpoint",
 version = "v1",
+scopes=Constants.EMAIL_SCOPE,
+clientIds = {
+		Constants.WEB_CLIENT_ID,
+		com.google.api.server.spi.Constant.API_EXPLORER_CLIENT_ID
+},
+audiences = {
+		Constants.ANDROID_AUDIENCE
+},  
 namespace = @ApiNamespace(ownerDomain = "usp.com", ownerName = "usp.com", packagePath = "book.entity"))
 public class BookEndpoint {
 
@@ -26,12 +36,17 @@ public class BookEndpoint {
 	 *
 	 * @return A CollectionResponse class containing the list of all entities
 	 *         persisted and a cursor to the next page.
+	 * @throws OAuthRequestException 
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
 	@ApiMethod(name = "listBooks")
-	public CollectionResponse<Book> listBook(@Nullable @Named("cursor") String cursorString,
-			@Nullable @Named("limit") Integer limit) {
-
+	public CollectionResponse<Book> listBook(
+			@Nullable @Named("cursor") String cursorString,
+			@Nullable @Named("limit") Integer limit,
+			User user) throws OAuthRequestException {
+		if (user == null) {
+			throw new OAuthRequestException("Authentication required");
+		}
 		EntityManager mgr = null;
 		Cursor cursor = null;
 		List<Book> execute = null;
@@ -70,9 +85,13 @@ public class BookEndpoint {
 	 * @param id
 	 *            the primary key of the java bean.
 	 * @return The entity with primary key id.
+	 * @throws OAuthRequestException 
 	 */
 	@ApiMethod(name = "getBook")
-	public Book getQuote(@Named("id") Long id) {
+	public Book getBook(@Named("id") Long id, User user) throws OAuthRequestException {
+		if (user == null) {
+			throw new OAuthRequestException("Authentication required");
+		}
 		EntityManager mgr = getEntityManager();
 		Book book = null;
 		try {
@@ -91,9 +110,13 @@ public class BookEndpoint {
 	 * @param book
 	 *            the entity to be inserted.
 	 * @return The inserted entity.
+	 * @throws OAuthRequestException 
 	 */
 	@ApiMethod(name = "insertBook")
-	public Book insertQuote(Book book) {
+	public Book insertBook(Book book, User user) throws OAuthRequestException {
+		if (user == null) {
+			throw new OAuthRequestException("Authentication required");
+		}
 		EntityManager mgr = getEntityManager();
 		try {
 			if (book.getId() != null) {
@@ -116,9 +139,13 @@ public class BookEndpoint {
 	 *
 	 * @param id
 	 *            the primary key of the entity to be deleted.
+	 * @throws OAuthRequestException 
 	 */
 	@ApiMethod(name = "removeBook")
-	public void removeBook(@Named("id") Long id) {
+	public void removeBook(@Named("id") Long id, User user) throws OAuthRequestException {
+		if (user == null) {
+			throw new OAuthRequestException("Authentication required");
+		}
 		EntityManager mgr = getEntityManager();
 		try {
 			Book book = mgr.find(Book.class, id);
