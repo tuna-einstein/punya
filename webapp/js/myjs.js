@@ -11,7 +11,7 @@ var storeObject = {
 		viewOrderCursor :'',
 }
 
-var CURRENCY = ["AUD", "INR"]
+var CURRENCY;
 function loading(showOrHide) {
 	setTimeout(function(){
 		$.mobile.loading(showOrHide);
@@ -48,7 +48,7 @@ $(document).on("pageinit", "#page_report", function() {
 	$('#page_report #list_selected_books').attr("my_counter", "0");
 	updateBookOptions = function() {
 		bookOptions = "";
-		console.log("uma");
+		console.log("updateBookOptions");
 		usp.punya.listBooks().done(function(books){
 			for (var i = 0; i < books.length; i++) {
 				bookOptions = bookOptions +
@@ -60,7 +60,41 @@ $(document).on("pageinit", "#page_report", function() {
 		});
 	};
 	
+	updateCurrencyOptions = function() {
+		console.log("updateCurrencyOptions");
+		usp.punya.listCurrency().done(function(currency) {
+			my_counter=$('#page_report #btn_add_currency').attr("my_counter");
+			currencyOptions = "";
+			for(var i=0, len=currency.length; i < len; i++) {
+				currencyOptions += '<option value="'+currency[i].currencyId+'">'
+				+currency[i].type+'</option>'
+			}
+			
+			$('#page_report #list_currency').append(
+					'<li id="currency_id_' + my_counter + '">'
+					+ '<a>'
+					+ '<div class="ui-grid-a">'
+					+ '<div class="ui-block-a">'
+					+ '<input type="number" value="0" id="currency_value_'+my_counter+'"/>'
+					+ '</div>'
+					+ '<div class="ui-block-b">'
+					+ '<select id="currency_type_"'+ my_counter +'" data-theme="b">'
+					+ currencyOptions
+					+ '</select>'
+					+ '</div>'
+					+ '</div> </a>'
+					+ '<a href="#" class="currency_delete" data-id="'+ my_counter +'">Delete</a>'
+					+ '</li>').listview('refresh');
+			$('#page_report #currency_value_'+my_counter).textinput();
+			$('select').selectmenu();
+			$('#page_report #btn_add_currency').attr("my_counter", parseInt(my_counter) + 1);
+		});
+	}
+	
 	updateBookOptions();
+	$('#page_report #list_currency').empty();
+	updateCurrencyOptions();
+	
 	$('#page_report').on('click', '.my-book-item', function() {
 		my_counter=$('#page_report #list_selected_books').attr("my_counter");
 		console.log(my_counter);
@@ -84,70 +118,44 @@ $(document).on("pageinit", "#page_report", function() {
 		$('input[data-type="search"]').trigger("keyup");
 	});
 
-			$('#page_report #list_selected_books').on('click', '.delete', function() {
-				bookId = $(this).data('id');
-				$('#page_report #list_selected_books #book_id_' + bookId).remove();
-			});
+    $('#page_report #list_selected_books').on('click', '.delete', function() {
+		bookId = $(this).data('id');
+		$('#page_report #list_selected_books #book_id_' + bookId).remove();
+	});
 
-			$('#page_report #btn_add_devotee').click(function() {
-				my_counter=$('#page_report #btn_add_devotee').attr("my_counter");
-				console.log(my_counter);
-				$('#page_report #list_devotee').append(
-						'<li id="devotee_name_' + my_counter + '">'
-						+ '<a>'
-						+ '<input type="text" id="devotee_name_' + my_counter + '">'
-						+ '</a>'
-						+ '<a href="#" class="delete" data-id="'+ my_counter +'">Delete</a>'
-						+ '</li>');
-				$('#page_report #list_devotee').listview('refresh');
-				$('#page_report #devotee_name_' + my_counter).textinput();
-				$('#page_report #btn_add_devotee').attr("my_counter", my_counter + 1);
-			});
+	$('#page_report #btn_add_devotee').click(function() {
+		my_counter=$('#page_report #btn_add_devotee').attr("my_counter");
+		console.log(my_counter);
+		$('#page_report #list_devotee').append(
+				'<li id="devotee_name_' + my_counter + '">'
+				+ '<a>'
+				+ '<input type="text" id="devotee_name_' + my_counter + '">'
+				+ '</a>'
+				+ '<a href="#" class="delete" data-id="'+ my_counter +'">Delete</a>'
+				+ '</li>');
+		$('#page_report #list_devotee').listview('refresh');
+		$('#page_report #devotee_name_' + my_counter).textinput();
+		$('#page_report #btn_add_devotee').attr("my_counter", my_counter + 1);
+	});
 
-			$('#page_report #list_devotee').on('click', '.delete', function() {
-				devoteeId = $(this).data('id');
-				console.log(devoteeId);
-				$('#page_report #list_devotee #devotee_name_' + devoteeId).remove();
-			});
+	$('#page_report #list_devotee').on('click', '.delete', function() {
+		devoteeId = $(this).data('id');
+		console.log(devoteeId);
+		$('#page_report #list_devotee #devotee_name_' + devoteeId).remove();
+	});
 
 
-			// Add more currency
-			$('#page_report #btn_add_currency').click(function() {
-				my_counter=$('#page_report #btn_add_currency').attr("my_counter");
-				console.log(my_counter);
-				var options = "";
-				for(var i=0, len=CURRENCY.length; i < len; i++) {
-					options += '<option value="'+CURRENCY[i]+'">'+CURRENCY[i]+'</option>'
-				}
+	// Add more currency
+	$('#page_report #btn_add_currency').click(function() {
+		updateCurrencyOptions();
+	});
 
-				$('#page_report #list_currency').append(
-						'<li id="currency_id_' + my_counter + '">'
-						+ '<a>'
-						+ '<div class="ui-grid-a">'
-						+ '<div class="ui-block-a">'
-						+ '<input type="number" value="0" id="currency_value_'+my_counter+'"/>'
-						+ '</div>'
-						+ '<div class="ui-block-b">'
-						+ '<select id="currency_type_"'+ my_counter +'" data-theme="b">'
-						+ options
-						+ '</select>'
-						+ '</div>'
-						+ '</div> </a>'
-						+ '<a href="#" class="currency_delete" data-id="'+ my_counter +'">Delete</a>'
-						+ '</li>');
-				$('#page_report #list_currency').listview('refresh');
-				//$('input').textinput();
-				$('#page_report #currency_value_'+my_counter).textinput();
-				$('select').selectmenu();
-				$('#page_report #btn_add_currency').attr("my_counter", parseInt(my_counter) + 1);
-			});
-
-			// Remove currency row
-			$('#page_report #list_currency').on('click', '.currency_delete', function() {
-				currencyId = $(this).data('id');
-				console.log(currencyId);
-				$('#page_report #list_currency #currency_id_' + currencyId).remove();
-			});
+	// Remove currency row
+	$('#page_report #list_currency').on('click', '.currency_delete', function() {
+		currencyId = $(this).data('id');
+		console.log(currencyId);
+		$('#page_report #list_currency #currency_id_' + currencyId).remove();
+	});
 
 });
 

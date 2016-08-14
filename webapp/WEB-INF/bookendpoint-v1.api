@@ -48,26 +48,17 @@
         "body" : "empty"
       }
     },
-    "bookendpoint.listBooks" : {
+    "bookendpoint.insertBook" : {
       "path" : "book",
-      "httpMethod" : "GET",
+      "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com" ],
       "clientIds" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.listBook",
+      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.insertBook",
       "request" : {
-        "parameters" : {
-          "cursor" : {
-            "type" : "string",
-            "required" : false
-          },
-          "limit" : {
-            "type" : "int32",
-            "required" : false
-          }
-        },
-        "body" : "empty"
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -94,17 +85,26 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "bookendpoint.insertBook" : {
+    "bookendpoint.listBooks" : {
       "path" : "book",
-      "httpMethod" : "POST",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com" ],
       "clientIds" : [ "816356369753-2fk8iao9pvdqbl4inor9qanfuuuimcbp.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.insertBook",
+      "rosyMethod" : "com.usp.punya.server.backend.BookEndpoint.listBook",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -113,6 +113,19 @@
   },
   "descriptor" : {
     "schemas" : {
+      "Book" : {
+        "id" : "Book",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      },
       "CollectionResponse_Book" : {
         "id" : "CollectionResponse_Book",
         "type" : "object",
@@ -127,33 +140,10 @@
             "type" : "string"
           }
         }
-      },
-      "Book" : {
-        "id" : "Book",
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "format" : "int64"
-          },
-          "title" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
       "com.usp.punya.server.backend.BookEndpoint.removeBook" : {
-      },
-      "com.usp.punya.server.backend.BookEndpoint.listBook" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Book"
-        }
-      },
-      "com.usp.punya.server.backend.BookEndpoint.getBook" : {
-        "response" : {
-          "$ref" : "Book"
-        }
       },
       "com.usp.punya.server.backend.BookEndpoint.insertBook" : {
         "request" : {
@@ -161,6 +151,16 @@
         },
         "response" : {
           "$ref" : "Book"
+        }
+      },
+      "com.usp.punya.server.backend.BookEndpoint.getBook" : {
+        "response" : {
+          "$ref" : "Book"
+        }
+      },
+      "com.usp.punya.server.backend.BookEndpoint.listBook" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Book"
         }
       }
     }

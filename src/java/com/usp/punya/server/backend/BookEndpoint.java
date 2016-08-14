@@ -124,9 +124,9 @@ public class BookEndpoint {
 					throw new EntityExistsException("Object already exists");
 				}
 			}
-			mgr.getTransaction().begin();
+		//	mgr.getTransaction().begin();
 			mgr.persist(book);
-			mgr.getTransaction().commit();
+		//	mgr.getTransaction().commit();
 		} finally {
 			mgr.close();
 		}

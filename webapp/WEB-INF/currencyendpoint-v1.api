@@ -1,0 +1,195 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://mypunya100.appspot.com/_ah/api",
+  "name" : "currencyendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://mypunya100.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "usp.com",
+  "ownerName" : "usp.com",
+  "packagePath" : "punya.server.backend",
+  "methods" : {
+    "currencyendpoint.getCurrency" : {
+      "path" : "currency/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.CurrencyEndpoint.getCurrency",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "currencyendpoint.updateCurrency" : {
+      "path" : "currency",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.CurrencyEndpoint.updateCurrency",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "currencyendpoint.listCurrency" : {
+      "path" : "currency",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.CurrencyEndpoint.listCurrency",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "currencyendpoint.removeCurrency" : {
+      "path" : "currency/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.CurrencyEndpoint.removeCurrency",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "currencyendpoint.insertCurrency" : {
+      "path" : "currency",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.CurrencyEndpoint.insertCurrency",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Currency" : {
+        "id" : "Currency",
+        "type" : "object",
+        "properties" : {
+          "currencyId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Currency" : {
+        "id" : "CollectionResponse_Currency",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Currency"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.usp.punya.server.backend.CurrencyEndpoint.getCurrency" : {
+        "response" : {
+          "$ref" : "Currency"
+        }
+      },
+      "com.usp.punya.server.backend.CurrencyEndpoint.updateCurrency" : {
+        "request" : {
+          "$ref" : "Currency"
+        },
+        "response" : {
+          "$ref" : "Currency"
+        }
+      },
+      "com.usp.punya.server.backend.CurrencyEndpoint.listCurrency" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Currency"
+        }
+      },
+      "com.usp.punya.server.backend.CurrencyEndpoint.removeCurrency" : {
+      },
+      "com.usp.punya.server.backend.CurrencyEndpoint.insertCurrency" : {
+        "request" : {
+          "$ref" : "Currency"
+        },
+        "response" : {
+          "$ref" : "Currency"
+        }
+      }
+    }
+  }
+}

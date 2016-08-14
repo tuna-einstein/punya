@@ -1,0 +1,283 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://mypunya100.appspot.com/_ah/api",
+  "name" : "reportendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://mypunya100.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "usp.com",
+  "ownerName" : "usp.com",
+  "packagePath" : "punya.server.backend",
+  "methods" : {
+    "reportendpoint.insertReport" : {
+      "path" : "report",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.ReportEndpoint.insertReport",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "reportendpoint.listReport" : {
+      "path" : "report",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.ReportEndpoint.listReport",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "reportendpoint.getReport" : {
+      "path" : "report/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.ReportEndpoint.getReport",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "reportendpoint.removeReport" : {
+      "path" : "report/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.ReportEndpoint.removeReport",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "reportendpoint.updateReport" : {
+      "path" : "report",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.usp.punya.server.backend.ReportEndpoint.updateReport",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Report" : {
+        "id" : "Report",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "$ref" : "Key"
+          },
+          "bookInfos" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "BookInfo"
+            }
+          },
+          "date" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "address" : {
+            "$ref" : "Address"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          },
+          "complete" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "BookInfo" : {
+        "id" : "BookInfo",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "$ref" : "Key"
+          },
+          "book" : {
+            "$ref" : "Book"
+          },
+          "count" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "bookId" : {
+            "type" : "string",
+            "format" : "int64"
+          }
+        }
+      },
+      "Book" : {
+        "id" : "Book",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Address" : {
+        "id" : "Address",
+        "type" : "object",
+        "properties" : {
+          "streetName" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "state" : {
+            "type" : "string"
+          },
+          "postalCode" : {
+            "type" : "string"
+          },
+          "locationType" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Report" : {
+        "id" : "CollectionResponse_Report",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Report"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.usp.punya.server.backend.ReportEndpoint.insertReport" : {
+        "request" : {
+          "$ref" : "Report"
+        },
+        "response" : {
+          "$ref" : "Report"
+        }
+      },
+      "com.usp.punya.server.backend.ReportEndpoint.listReport" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Report"
+        }
+      },
+      "com.usp.punya.server.backend.ReportEndpoint.getReport" : {
+        "response" : {
+          "$ref" : "Report"
+        }
+      },
+      "com.usp.punya.server.backend.ReportEndpoint.removeReport" : {
+      },
+      "com.usp.punya.server.backend.ReportEndpoint.updateReport" : {
+        "request" : {
+          "$ref" : "Report"
+        },
+        "response" : {
+          "$ref" : "Report"
+        }
+      }
+    }
+  }
+}

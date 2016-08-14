@@ -14,9 +14,14 @@ usp.punya.SCOPES =
 usp.punya.signedIn = false;
 
 usp.punya.BOOKS = $.Deferred();
+usp.punya.CURRENCY = $.Deferred();
 
 usp.punya.listBooks = function() {
 	return usp.punya.BOOKS.promise();
+};
+
+usp.punya.listCurrency = function() {
+	return usp.punya.CURRENCY.promise();
 };
 
 /**
@@ -25,6 +30,9 @@ usp.punya.listBooks = function() {
 usp.punya.loadData = function() {
 	console.log(gapi.client);
 	var listBooks = $.Deferred();
+	var listCurrency = $.Deferred();
+	
+	var batch = gapi.client.newBatch();
 
 	gapi.client.bookendpoint.listBooks().then(
 			function(resp) {
@@ -37,14 +45,29 @@ usp.punya.loadData = function() {
 				}
 			});
 
-	$.when(listBooks).done(function(result1) {
-		usp.punya.BOOKS.resolve(result1.items || []);
+	gapi.client.currencyendpoint.listCurrency().then(
+			function(resp) {
+				//console.log(resp);
+				if (resp.status == 200) {
+					console.log(resp.body);
+					listCurrency.resolve(jQuery.parseJSON(resp.body));
+				} else {
+					listBooks.reject(resp);
+				}
+			});
+	
+	$.when(listBooks, listCurrency).done(function(books, currency) {
+		console.log(currency);
+		usp.punya.BOOKS.resolve(books.items || []);
+		usp.punya.CURRENCY.resolve(currency.items || []);
 		//console.log(result1);
 		$.mobile.changePage("#page_report");
 	}).fail(function(failResult) {
 		console.log(failResult)
 	});
 };
+
+
 
 
 function prms_gapi_load_by(api,v, apiRoot) {
@@ -90,9 +113,12 @@ function prms_gapi_auth(mode){
 
 usp.punya.loadApis = function(apiRoot) {
 	$.when(prms_gapi_load_by('bookendpoint', 'v1', apiRoot),
-			prms_gapi_load_by('oauth2', 'v2')).done(function(bookendpoint, oauth2) {
+			prms_gapi_load_by('currencyendpoint', 'v1', apiRoot),
+			prms_gapi_load_by('oauth2', 'v2')).done(
+					function(bookendpoint, currencyendpoint, oauth2) {
 				usp.punya.loadData();
 			}).fail(function(failResult) {
+				
 				console.log(failResult)
 			}); 
 }
