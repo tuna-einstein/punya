@@ -9,6 +9,8 @@
         <class>com.usp.punya.server.backend.Book</class>
         <class>com.usp.punya.server.backend.Report</class>
         <class>com.usp.punya.server.backend.model.Address</class>
+        <class>com.usp.punya.server.backend.Currency</class>
+        <class>com.usp.punya.server.backend.model.BookInfo</class>
         <properties>
             <property name="datanucleus.NontransactionalRead" value="true"/>
             <property name="datanucleus.NontransactionalWrite" value="true"/>
