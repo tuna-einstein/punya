@@ -1,10 +1,10 @@
 package com.usp.punya.server.backend;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +12,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 
 import com.google.appengine.api.datastore.Key;
 import com.usp.punya.server.backend.model.Address;
