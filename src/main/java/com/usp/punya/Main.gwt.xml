@@ -6,6 +6,11 @@
 <module rename-to='Main'>
 	<!-- Inherit the core Web Toolkit stuff. -->
 	<inherits name='com.google.gwt.user.User' />
+	
+	  <!-- Other module inherits                                      -->
+    <inherits name='org.restlet.Restlet' />
+	<inherits name="org.fusesource.restygwt.RestyGWT"/>
+	
 	<inherits name="com.googlecode.mgwt.MGWT" />
 	<inherits name="com.google.gwt.logging.Logging" />
 	<!-- Include Gin -->

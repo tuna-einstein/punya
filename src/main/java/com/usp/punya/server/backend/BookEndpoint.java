@@ -16,6 +16,7 @@ import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
+import com.usp.punya.shared.model.Book;
 
 @Api(name = "bookendpoint",
 version = "v1",

@@ -1,4 +1,4 @@
-package com.usp.punya.server.backend.model;
+package com.usp.punya.shared.model;
 
 import javax.persistence.Embeddable;
 

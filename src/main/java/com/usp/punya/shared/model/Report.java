@@ -1,4 +1,4 @@
-package com.usp.punya.server.backend;
+package com.usp.punya.shared.model;
 
 import java.util.Date;
 import java.util.List;
@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.google.appengine.api.datastore.Key;
-import com.usp.punya.server.backend.model.Address;
-import com.usp.punya.server.backend.model.BookInfo;
 
 @Entity
 public class Report {

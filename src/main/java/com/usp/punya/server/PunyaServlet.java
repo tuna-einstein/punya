@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.usp.punya.server.backend.Book;
-import com.usp.punya.server.backend.Currency;
 import com.usp.punya.server.backend.EMFService;
+import com.usp.punya.shared.model.Book;
+import com.usp.punya.shared.model.Currency;
 
 @SuppressWarnings("serial")
 public class PunyaServlet extends HttpServlet {

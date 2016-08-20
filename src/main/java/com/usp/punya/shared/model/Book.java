@@ -1,4 +1,4 @@
-package com.usp.punya.server.backend;
+package com.usp.punya.shared.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

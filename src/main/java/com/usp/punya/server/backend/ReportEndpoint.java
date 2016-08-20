@@ -1,7 +1,8 @@
 package com.usp.punya.server.backend;
 
 import com.usp.punya.server.backend.EMF;
-import com.usp.punya.server.backend.model.BookInfo;
+import com.usp.punya.shared.model.BookInfo;
+import com.usp.punya.shared.model.Report;
 import com.google.api.server.spi.BackendProperties;
 import com.google.api.server.spi.auth.common.User;
 import com.google.api.server.spi.config.Api;

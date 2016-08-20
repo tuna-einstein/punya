@@ -1,4 +1,4 @@
-package com.usp.punya.server.backend.model;
+package com.usp.punya.shared.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,8 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import com.google.appengine.api.datastore.Key;
-import com.usp.punya.server.backend.Book;
-import com.usp.punya.server.backend.Report;
 
 @Entity
 public class BookInfo {

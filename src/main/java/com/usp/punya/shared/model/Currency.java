@@ -1,4 +1,4 @@
-package com.usp.punya.server.backend;
+package com.usp.punya.shared.model;
 
 import java.io.Serializable;
 import javax.persistence.*;

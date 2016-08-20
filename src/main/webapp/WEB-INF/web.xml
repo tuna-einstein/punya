@@ -22,9 +22,25 @@
 			<param-value>com.usp.punya.server.backend.BookEndpoint,com.usp.punya.server.backend.CurrencyEndpoint,com.usp.punya.server.backend.ReportEndpoint</param-value>
 		</init-param>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>SystemServiceServlet</servlet-name>
 		<url-pattern>/_ah/spi/*</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>RestletServletAdaptor</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>com.usp.punya.server.BooksRestServiceApplication</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>RestletServletAdaptor</servlet-name>
+		<url-pattern>/rs/*</url-pattern>
 	</servlet-mapping>
 </web-app>

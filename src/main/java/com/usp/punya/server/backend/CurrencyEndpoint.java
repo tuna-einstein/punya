@@ -1,7 +1,7 @@
 package com.usp.punya.server.backend;
 
 import com.usp.punya.server.backend.EMF;
-
+import com.usp.punya.shared.model.Currency;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;

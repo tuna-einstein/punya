@@ -4,6 +4,8 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
+import com.usp.punya.shared.model.Book;
+
 @Generated(value="Dali", date="2016-08-10T00:06:43.374-0700")
 @StaticMetamodel(Book.class)
 public class Book_ {
