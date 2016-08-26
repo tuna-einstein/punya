@@ -13,6 +13,8 @@ public interface Injector extends Ginjector, PunyaPlaceTokenizers {
     public EventBus getEventBus();
     
     public void injectEntryPoint(Main entryPoint);
+    
+   // public BasicAuthHeaderDispatcherFilterFactory getAuthFactory();
 }
 
 //public interface Injector {

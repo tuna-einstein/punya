@@ -1,4 +1,4 @@
-package com.usp.punya.client;
+package com.usp.punya.client.place;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
@@ -8,6 +8,7 @@ public class SigninPlace extends Place {
 	
 	@Prefix("signin")
 	public static class Tokenizer implements PlaceTokenizer<SigninPlace> {
+		
 		@Override
 		public SigninPlace getPlace(String token) {
 			return new SigninPlace();

@@ -8,7 +8,7 @@ def appEmail  = "umasankar.usp@gmail.com"
 
 def appengineVersion = "1.9.28"
 /* List constants that we use in multiple places. */
-def restletVersion = "2.3.7"
+def restletVersion = "2.2.3"
 
 compileJava {
   sourceCompatibility = JavaVersion.VERSION_1_7
@@ -58,14 +58,17 @@ dependencies {
     }
     compile group: 'org.fusesource.restygwt', name: 'restygwt', version: '2.2.0'
     
-    compile "org.restlet.gae:org.restlet:${restletVersion}"
-    compile "org.restlet.jee:org.restlet.ext.servlet:${restletVersion}"
-    compile ("org.restlet.gwt:org.restlet:2.2.2") {
-        exclude group: 'com.google.gwt', module: 'gwt-user'
-        exclude group: 'com.google.gwt', module: 'gwt-dev'  
-    }
-
-    compile "org.restlet.jee:org.restlet.ext.jackson:${restletVersion}"
+  //  compile "org.restlet.gae:org.restlet:3.0-M1"
+  //  compile "org.restlet.gae:org.restlet.ext.gae:3.0-M1"
+  //  compile "org.restlet.gae:org.restlet.ext.servlet:3.0-M1"
+  //  compile "org.restlet.gae:org.restlet.ext.jackson:3.0-M1"
+  //  compile 'org.restlet.jee:org.restlet.ext.servlet:3.0-M1'
+  
+   compile 'javax.ws.rs:jsr311-api:1.1.1'
+   compile("com.google.api:gwt-oauth2:0.2") {
+       exclude group:"com.google.gwt", module:"gwt-dev"
+       exclude group:"com.google.gwt", module:"gwt-user"
+   }
 }
 
 gwt {

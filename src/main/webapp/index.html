@@ -19,6 +19,11 @@
 			Your web browser must have JavaScript enabled in order for this
 			application to display correctly.</div>
 	</noscript>
-
+	<script type="text/javascript">
+		function init() {
+			usp.punya.init('//' + window.location.host + '/_ah/api');
+		}
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=init"></script>
 </body>
 </html>
