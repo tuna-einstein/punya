@@ -1,6 +1,4 @@
-package com.usp.punya.client.view;
-
-import javax.inject.Singleton;
+package com.usp.punya.client.signin;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.TouchEndEvent;
@@ -11,11 +9,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.ui.client.widget.button.Button;
 
-public class SigninWidget extends Composite implements SigninView {
+public class SigninViewGwtImpl extends Composite implements SigninView {
 
-	private static SigninWidgetUiBinder uiBinder = GWT.create(SigninWidgetUiBinder.class);
+	private static SigninViewGwtImplUiBinder uiBinder = GWT.create(SigninViewGwtImplUiBinder.class);
 
-	interface SigninWidgetUiBinder extends UiBinder<Widget, SigninWidget> {
+	interface SigninViewGwtImplUiBinder extends UiBinder<Widget, SigninViewGwtImpl> {
 	}
 
 	private Bridge bridge;
@@ -23,7 +21,7 @@ public class SigninWidget extends Composite implements SigninView {
 	@UiField
 	Button signinButton;
 	
-	public SigninWidget() {
+	public SigninViewGwtImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 	

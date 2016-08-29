@@ -74,6 +74,8 @@ dependencies {
 gwt {
     gwtVersion='2.7.0'
     modules 'com.usp.punya.Main'
+    minHeapSize = '2g'
+    maxHeapSize = '4g'
 }
 
 appengine {

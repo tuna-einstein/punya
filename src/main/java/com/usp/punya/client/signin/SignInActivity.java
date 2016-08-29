@@ -1,4 +1,4 @@
-package com.usp.punya.client.activity;
+package com.usp.punya.client.signin;
 
 import javax.inject.Inject;
 
@@ -14,14 +14,14 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.usp.punya.client.ErrorDialog;
 import com.usp.punya.client.place.ReportFormPlace;
 import com.usp.punya.client.proxy.BasicAuthHeaderDispatcherFilter.BasicAuthHeaderDispatcherFilterFactory;
-import com.usp.punya.client.view.SigninView;
-import com.usp.punya.client.view.SigninView.Bridge;
 import com.usp.punya.client.proxy.ForbiddenDispatcherFilter;
+import com.usp.punya.client.signin.SigninView.Bridge;
 
-public class SignInActivity extends AbstractActivity implements Bridge {
+public class SignInActivity extends MGWTAbstractActivity implements Bridge {
 
 	@Inject SigninView view;
 	@Inject AuthRequest authRequest;

@@ -6,21 +6,24 @@
 <module rename-to='Main'>
 	<!-- Inherit the core Web Toolkit stuff. -->
 	<inherits name='com.google.gwt.user.User' />
-	
-	  <!-- Other module inherits                                      -->
-   <!--  <inherits name='org.restlet.Restlet' /> -->
-   <inherits name="com.google.api.gwt.oauth2.OAuth2" />
-	<inherits name="org.fusesource.restygwt.RestyGWT"/>
-	
+
+	<!-- Other module inherits -->
+	<!-- <inherits name='org.restlet.Restlet' /> -->
+	<inherits name="com.google.api.gwt.oauth2.OAuth2" />
+	<inherits name="org.fusesource.restygwt.RestyGWT" />
+
 	<inherits name="com.googlecode.mgwt.MGWT" />
+	<inherits name="com.googlecode.mgwt.linker.Linker" />
+	<inherits name="com.usp.punya.client.widget.image.LocalImageHolder"/>
+
 	<inherits name="com.google.gwt.logging.Logging" />
 	<!-- Include Gin -->
 	<inherits name="com.google.gwt.inject.Inject" />
-	<inherits name="com.google.gwt.uibinder.UiBinder"/>
+	<inherits name="com.google.gwt.uibinder.UiBinder" />
 
 	<inherits name="com.googlecode.mgwt.ui.client.theme.platform.Platform" />
-	
-	
+
+
 	<!-- Inherit the default GWT style sheet. You can change -->
 	<!-- the theme of your GWT application by uncommenting -->
 	<!-- any one of the following lines. -->

@@ -11,24 +11,29 @@ import org.fusesource.restygwt.client.MethodCallback;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
+import com.googlecode.mgwt.mvp.client.history.MGWTPlaceHistoryHandler;
 import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.MGWTSettings;
-import com.googlecode.mgwt.ui.client.widget.animation.AnimationWidget;
-import com.usp.punya.client.place.SigninPlace;
+import com.googlecode.mgwt.ui.client.widget.menu.swipe.SwipeMenu;
+import com.usp.punya.client.home.HomePlace;
+import com.usp.punya.client.navmenu.NavMenu;
 import com.usp.punya.client.proxy.BookService;
 import com.usp.punya.shared.model.Book;
 
 public class Main implements EntryPoint {
 			
-	@Inject EventBus eventBus;
 	@Inject Logger logger;
 	@Inject AnimatingActivityManager animatingActivityManager;
 	@Inject PlaceController placeController;
 	@Inject AnimatingActivityManager activityManager;
+	@Inject @NavMenu AnimatingActivityManager navMenuActivityManager;
+	@Inject SwipeMenu swipeMenu;
+	@Inject MGWTPlaceHistoryHandler mGWTPlaceHistoryHandler;
+	@Inject EventBus eventBus;
 	
 	public void onModuleLoad() {
 		
@@ -37,10 +42,20 @@ public class Main implements EntryPoint {
 		// set viewport and other settings for mobile
 		MGWT.applySettings(MGWTSettings.getAppSetting());
 		
-		AnimationWidget appWidget = new AnimationWidget(); 
-		RootPanel.get().add(appWidget);
-		activityManager.setDisplay(appWidget);
-		placeController.goTo(new SigninPlace());
+//		AnimationWidget appWidget = new AnimationWidget();
+//		activityManager.setDisplay(appWidget);
+//		SwipeMenu swipeMenu1 = new SwipeMenu();
+//		swipeMenu1.setContentDisplay(appWidget);
+//		
+//		AnimationWidget navDisplay = new AnimationWidget();
+//		navMenuActivityManager.setDisplay(navDisplay);
+//		swipeMenu1.setMenuDisplay(navDisplay);
+//		
+//		RootPanel.get().add(swipeMenu1);
+		
+		RootPanel.get().add(swipeMenu);
+		mGWTPlaceHistoryHandler.register(placeController, eventBus, new HomePlace());
+		mGWTPlaceHistoryHandler.handleCurrentHistory();
 	}
 	
 	private void readBooks() {

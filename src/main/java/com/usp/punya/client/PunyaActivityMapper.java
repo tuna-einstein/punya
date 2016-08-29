@@ -5,10 +5,12 @@ import javax.inject.Inject;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
-import com.usp.punya.client.activity.EditReportActivity;
-import com.usp.punya.client.activity.SignInActivity;
-import com.usp.punya.client.place.ReportFormPlace;
+import com.usp.punya.client.home.HomeActivity;
+import com.usp.punya.client.home.HomePlace;
 import com.usp.punya.client.place.SigninPlace;
+import com.usp.punya.client.report.ReportActivity;
+import com.usp.punya.client.report.ReportPlace;
+import com.usp.punya.client.signin.SignInActivity;
 
 public class PunyaActivityMapper implements ActivityMapper {
 
@@ -20,10 +22,13 @@ public class PunyaActivityMapper implements ActivityMapper {
 		if (place instanceof SigninPlace) {
 			return factory.createSigninActivity(((SigninPlace) place));
 		}
-		if (place instanceof ReportFormPlace) {
-			return factory.createEditReportActivity((ReportFormPlace) place);
+		if (place instanceof HomePlace) {
+			return factory.create((HomePlace) place);
 		}
-		return null;
+		if (place instanceof ReportPlace) {
+			return factory.create((ReportPlace) place);
+		}
+		return new HomeActivity();
 	}
 	
 	/**
@@ -32,6 +37,7 @@ public class PunyaActivityMapper implements ActivityMapper {
 	 */
 	public interface ActivityFactory {
 		SignInActivity createSigninActivity(SigninPlace place);
-		EditReportActivity createEditReportActivity(ReportFormPlace place);
+		HomeActivity create(HomePlace homePlace);
+		ReportActivity create(ReportPlace reportPlace);
 	}
 }

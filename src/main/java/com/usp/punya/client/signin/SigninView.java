@@ -1,4 +1,4 @@
-package com.usp.punya.client.view;
+package com.usp.punya.client.signin;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.user.client.ui.IsWidget;
