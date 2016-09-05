@@ -22,6 +22,9 @@
 	<inherits name="com.google.gwt.uibinder.UiBinder" />
 
 	<inherits name="com.googlecode.mgwt.ui.client.theme.platform.Platform" />
+	
+	<inherits name="com.google.gwt.query.Query"/>
+	<inherits name="com.vaadin.polymer.Elements"/>
 
 
 	<!-- Inherit the default GWT style sheet. You can change -->

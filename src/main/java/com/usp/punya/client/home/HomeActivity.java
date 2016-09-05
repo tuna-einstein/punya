@@ -6,12 +6,14 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.menu.swipe.SwipeMenu;
 import com.usp.punya.client.navmenu.MenuItem;
+import com.usp.punya.client.navmenu.MenuPlace;
 import com.usp.punya.client.report.ReportPlace;
 
 public class HomeActivity extends MGWTAbstractActivity implements HomeView.Presenter {
@@ -25,7 +27,7 @@ public class HomeActivity extends MGWTAbstractActivity implements HomeView.Prese
 		view.setPresenter(this);
 		view.render(createTopicsList());
 		view.refresh();
-		
+		GWT.log("Start HomeActivity");
 		panel.setWidget(view);
 	}
 
@@ -47,10 +49,12 @@ public class HomeActivity extends MGWTAbstractActivity implements HomeView.Prese
 
     @Override
     public void onMenuButtonPressed() {
+    	
     	if (swipeMenu.get().isOpen()) {
     		swipeMenu.get().close();
     	} else {
     		swipeMenu.get().open();
+    		//placeController.goTo(new MenuPlace());
     	}
     }
 }

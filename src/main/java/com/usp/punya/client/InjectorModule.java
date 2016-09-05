@@ -23,6 +23,7 @@ import com.googlecode.mgwt.ui.client.widget.menu.swipe.SwipeMenu;
 import com.usp.punya.client.PunyaActivityMapper.ActivityFactory;
 import com.usp.punya.client.home.HomeView;
 import com.usp.punya.client.home.HomeViewGwtImpl;
+import com.usp.punya.client.navmenu.AppNavAnimationMapper;
 import com.usp.punya.client.navmenu.NavMenu;
 import com.usp.punya.client.navmenu.NavMenuActivityMapper;
 import com.usp.punya.client.navmenu.NavMenuModule;
@@ -83,8 +84,8 @@ public class InjectorModule extends AbstractGinModule {
 	@Provides
 	@NavMenu
 	AnimatingActivityManager provideNavMenuActivityManager(
-			@NavMenu ActivityMapper mapper,
-			AnimationMapper animationMapper,
+			NavMenuActivityMapper mapper,
+			AppNavAnimationMapper animationMapper,
 			EventBus eventBus) {
 		return new AnimatingActivityManager(mapper, animationMapper, eventBus);
 	}
@@ -104,18 +105,8 @@ public class InjectorModule extends AbstractGinModule {
 	
 	@Singleton
 	@Provides
-	SwipeMenu provideSwipeMenu(
-			@NavMenu AnimatingActivityManager navActivityManager,
-			AnimatingActivityManager mainActivityManager) {
-		SwipeMenu swipeMenu = new SwipeMenu();
-		AnimationWidget navDisplay = new AnimationWidget();
-		navActivityManager.setDisplay(navDisplay);
-		swipeMenu.setMenuDisplay(navDisplay);
-		
-		AnimationWidget mainDisplay = new AnimationWidget();
-		mainActivityManager.setDisplay(mainDisplay);
-		swipeMenu.setContentDisplay(mainDisplay);
-		return swipeMenu;
+	SwipeMenu provideSwipeMenu() {
+		return new SwipeMenu();
 	}
 	
 	@Singleton

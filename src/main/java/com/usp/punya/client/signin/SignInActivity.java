@@ -8,12 +8,11 @@ import org.fusesource.restygwt.client.dispatcher.FilterawareDispatcher;
 
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
-import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.usp.punya.client.ErrorDialog;
 import com.usp.punya.client.place.ReportFormPlace;

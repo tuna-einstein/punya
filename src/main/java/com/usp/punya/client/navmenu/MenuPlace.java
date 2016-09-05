@@ -6,7 +6,6 @@ import com.google.gwt.place.shared.Prefix;
 
 public class MenuPlace extends Place {
 
-	@Prefix("menu")
 	public static class Tokenizer implements PlaceTokenizer<MenuPlace> {
 		
 		@Override
@@ -16,7 +15,7 @@ public class MenuPlace extends Place {
 		
 		@Override
 		public String getToken(MenuPlace place) {
-			return "menu";
+			return "";
 		}
 	}
 }

@@ -2,8 +2,8 @@ package com.usp.punya.client.report;
 
 import javax.inject.Inject;
 
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.usp.punya.client.event.ActionEvent;
 import com.usp.punya.client.event.ActionNames;

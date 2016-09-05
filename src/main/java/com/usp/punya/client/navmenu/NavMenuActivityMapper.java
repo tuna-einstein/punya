@@ -14,11 +14,8 @@ public class NavMenuActivityMapper implements ActivityMapper{
 	
 	@Override
 	public Activity getActivity(Place place) {
-		if (place instanceof MenuPlace) {
-			return factory.create((MenuPlace) place);
-		}
-		GWT.log("MenuActivity created");
-		return new MenuActivity();
+		GWT.log("NavMenuActivityMapper : " + place.getClass().getName());
+		return factory.create();
 	}
 	
 	/**
@@ -26,7 +23,7 @@ public class NavMenuActivityMapper implements ActivityMapper{
 	 *
 	 */
 	public interface ActivityFactory {
-		MenuActivity create(MenuPlace place);
+		MenuActivity create();
 	}
 
 }

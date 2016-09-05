@@ -1,13 +1,20 @@
 package com.usp.punya.client.report;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
-import com.googlecode.mgwt.ui.client.widget.button.image.PreviousitemImageButton;
+import com.vaadin.polymer.paper.widget.PaperDialog;
+import com.vaadin.polymer.paper.widget.PaperDrawerPanel;
+import com.vaadin.polymer.paper.widget.PaperInput;
+import com.vaadin.polymer.paper.widget.PaperTextarea;
+
+import javax.inject.Inject;
+
 
 public class ReportViewGwtImpl extends Composite implements ReportView {
 
@@ -23,28 +30,22 @@ public class ReportViewGwtImpl extends Composite implements ReportView {
 	 */
 	private static ReportViewGwtImplUiBinder uiBinder = GWT
 			.create(ReportViewGwtImplUiBinder.class);
-
-
-	@UiField
-	PreviousitemImageButton backButton;
-
-	private Presenter presenter;
-
+	
 	public ReportViewGwtImpl() {
-
 		initWidget(uiBinder.createAndBindUi(this));
-
 	}
 
-	@UiHandler("backButton")
-	protected void onBackButtonPressed(TapEvent event) {
-		if (presenter != null) {
-			presenter.onBackButtonPressed();
+
+
+		@Override
+		public Widget asWidget() {
+			// TODO Auto-generated method stub
+			return null;
 		}
-	}
 
-	@Override
-	public void setPresenter(Presenter presenter) {
-		this.presenter = presenter;
-	}
+		@Override
+		public void setPresenter(Presenter presenter) {
+			// TODO Auto-generated method stub
+			
+		}
 }

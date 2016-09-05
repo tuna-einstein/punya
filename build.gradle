@@ -69,10 +69,12 @@ dependencies {
        exclude group:"com.google.gwt", module:"gwt-dev"
        exclude group:"com.google.gwt", module:"gwt-user"
    }
+   compile group: 'com.vaadin.polymer', name: 'vaadin-gwt-polymer-elements', version: '1.2.3.0'
+   compile group: 'com.googlecode.gwtquery', name: 'gwtquery', version: '1.5-beta1'
 }
 
 gwt {
-    gwtVersion='2.7.0'
+    gwtVersion='2.8.0-beta1'
     modules 'com.usp.punya.Main'
     minHeapSize = '2g'
     maxHeapSize = '4g'
