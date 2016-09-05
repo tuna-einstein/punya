@@ -8,8 +8,6 @@ import com.google.gwt.core.shared.GWT;
 import com.google.gwt.place.shared.Place;
 import com.usp.punya.client.home.HomeActivity;
 import com.usp.punya.client.home.HomePlace;
-import com.usp.punya.client.navmenu.MenuActivity;
-import com.usp.punya.client.navmenu.MenuPlace;
 import com.usp.punya.client.place.SigninPlace;
 import com.usp.punya.client.report.ReportActivity;
 import com.usp.punya.client.report.ReportPlace;

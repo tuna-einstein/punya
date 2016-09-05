@@ -22,14 +22,22 @@ import com.googlecode.mgwt.ui.client.MGWTSettings;
 import com.googlecode.mgwt.ui.client.widget.animation.AnimationWidget;
 import com.googlecode.mgwt.ui.client.widget.menu.swipe.SwipeMenu;
 import com.usp.punya.client.home.HomePlace;
-import com.usp.punya.client.navmenu.MenuPlace;
-import com.usp.punya.client.navmenu.MenuView;
-import com.usp.punya.client.navmenu.NavMenu;
 import com.usp.punya.client.proxy.BookService;
 import com.usp.punya.shared.model.Book;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.elemental.Function;
-import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.iron.IronIconElement;
+import com.vaadin.polymer.paper.PaperButtonElement;
+import com.vaadin.polymer.paper.PaperCheckboxElement;
+import com.vaadin.polymer.paper.PaperDialogElement;
+import com.vaadin.polymer.paper.PaperDrawerPanelElement;
+import com.vaadin.polymer.paper.PaperFabElement;
+import com.vaadin.polymer.paper.PaperHeaderPanelElement;
+import com.vaadin.polymer.paper.PaperIconItemElement;
+import com.vaadin.polymer.paper.PaperInputElement;
+import com.vaadin.polymer.paper.PaperRippleElement;
+import com.vaadin.polymer.paper.PaperTextareaElement;
+import com.vaadin.polymer.paper.PaperToolbarElement;
 
 public class Main implements EntryPoint {
 			
@@ -37,11 +45,9 @@ public class Main implements EntryPoint {
 	@Inject AnimatingActivityManager animatingActivityManager;
 	@Inject PlaceController placeController;
 	@Inject AnimatingActivityManager activityManager;
-	@Inject @NavMenu AnimatingActivityManager navMenuActivityManager;
 	@Inject SwipeMenu swipeMenu;
 	@Inject MGWTPlaceHistoryHandler mGWTPlaceHistoryHandler;
 	@Inject EventBus eventBus;
-	@Inject MenuView menuView;
 	
 	public void onModuleLoad() {
 		
@@ -60,26 +66,19 @@ public class Main implements EntryPoint {
         // you can pass tag-names for standard component locations (tag-name/tag-name.html)
         // or relative urls otherwise.
         Polymer.importHref(Arrays.asList(
-                // Paper applications must always import paper-styles
-                "paper-styles",
-                // Styles for paper examples
-                "paper-styles/demo-pages.html",
-                // Iconsets must be loaded before using any component depending on them.
-                // We load all Iron and Vaadin collections.
-                "iron-icons",
-                "iron-icons/communication-icons.html",
-                "iron-icons/av-icons.html",
-                "iron-icons/device-icons.html",
-                "iron-icons/editor-icons.html",
-                "iron-icons/hardware-icons.html",
-                "iron-icons/image-icons.html",
-                "iron-icons/maps-icons.html",
-                "iron-icons/notification-icons.html",
-                "iron-icons/social-icons.html",
-                "vaadin-icons",
-                // Flex-layout and animations are used in all the app, loading it early.
-                "iron-flex-layout",
-                "neon-animation"
+        		  "iron-icons/iron-icons.html",
+                  PaperIconItemElement.SRC,
+                  PaperRippleElement.SRC,
+                  IronIconElement.SRC,
+                  PaperDrawerPanelElement.SRC,
+                  PaperHeaderPanelElement.SRC,
+                  PaperToolbarElement.SRC,
+                  PaperFabElement.SRC,
+                  PaperDialogElement.SRC,
+                  PaperTextareaElement.SRC,
+                  PaperInputElement.SRC,
+                  PaperButtonElement.SRC,
+                  PaperCheckboxElement.SRC
                 ));
 
         Polymer.whenReady(new Function() {
@@ -96,17 +95,10 @@ public class Main implements EntryPoint {
 	}
 	
 	private void prepareDisplay() {
-		AnimationWidget navDisplay = new AnimationWidget();
-		navMenuActivityManager.setDisplay(navDisplay);
-		swipeMenu.setMenuDisplay(navDisplay);
 		
 		AnimationWidget mainDisplay = new AnimationWidget();
 		activityManager.setDisplay(mainDisplay);
-		swipeMenu.setContentDisplay(mainDisplay);
-		
-		
-		
-		RootPanel.get().add(swipeMenu);
+		RootPanel.get().add(mainDisplay);
 	}
 	private void readBooks() {
 		 BookService bookService = GWT.create(BookService.class);

@@ -18,15 +18,9 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.googlecode.mgwt.mvp.client.AnimatingActivityManager;
 import com.googlecode.mgwt.mvp.client.history.MGWTPlaceHistoryHandler;
-import com.googlecode.mgwt.ui.client.widget.animation.AnimationWidget;
-import com.googlecode.mgwt.ui.client.widget.menu.swipe.SwipeMenu;
 import com.usp.punya.client.PunyaActivityMapper.ActivityFactory;
 import com.usp.punya.client.home.HomeView;
 import com.usp.punya.client.home.HomeViewGwtImpl;
-import com.usp.punya.client.navmenu.AppNavAnimationMapper;
-import com.usp.punya.client.navmenu.NavMenu;
-import com.usp.punya.client.navmenu.NavMenuActivityMapper;
-import com.usp.punya.client.navmenu.NavMenuModule;
 import com.usp.punya.client.proxy.BasicAuthHeaderDispatcherFilter.BasicAuthHeaderDispatcherFilterFactory;
 import com.usp.punya.client.report.ReportView;
 import com.usp.punya.client.report.ReportViewGwtImpl;
@@ -44,8 +38,6 @@ public class InjectorModule extends AbstractGinModule {
 		bind(com.googlecode.mgwt.mvp.client.AnimationMapper.class)
 		.to(AnimationMapper.class).in(Singleton.class);
 		bind(ActivityMapper.class).to(PunyaActivityMapper.class).in(Singleton.class);
-		bind(ActivityMapper.class)
-			.annotatedWith(NavMenu.class).to(NavMenuActivityMapper.class).in(Singleton.class);
 
 		// View interfaces to their singleton Widgets
 		// the Widgets themselves are set as singletons
@@ -57,7 +49,6 @@ public class InjectorModule extends AbstractGinModule {
 		install(new GinFactoryModuleBuilder().build(ActivityFactory.class));
 		install(new GinFactoryModuleBuilder().build(
 				BasicAuthHeaderDispatcherFilterFactory.class));
-		install(new NavMenuModule());
 	}
 
 	@Singleton @Provides
@@ -79,16 +70,6 @@ public class InjectorModule extends AbstractGinModule {
 			EventBus eventBus) {
 		return new AnimatingActivityManager(mapper, animationMapper, eventBus);
 	}
-
-	@Singleton
-	@Provides
-	@NavMenu
-	AnimatingActivityManager provideNavMenuActivityManager(
-			NavMenuActivityMapper mapper,
-			AppNavAnimationMapper animationMapper,
-			EventBus eventBus) {
-		return new AnimatingActivityManager(mapper, animationMapper, eventBus);
-	}
 	
 	@Provides
 	@Singleton
@@ -101,12 +82,6 @@ public class InjectorModule extends AbstractGinModule {
 	public AuthRequest getAuthRequest() {
 		return new AuthRequest(AUTH_URL, CLIENT_ID)
 				.withScopes("https://www.googleapis.com/auth/userinfo.email");
-	}
-	
-	@Singleton
-	@Provides
-	SwipeMenu provideSwipeMenu() {
-		return new SwipeMenu();
 	}
 	
 	@Singleton

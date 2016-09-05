@@ -1,26 +1,65 @@
-<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
-<ui:UiBinder
-    xmlns:ui="urn:ui:com.google.gwt.uibinder"
-    xmlns:g="urn:import:com.google.gwt.user.client.ui"
-    xmlns:mgwt="urn:import:com.googlecode.mgwt.ui.client.widget"
-    xmlns:local="urn:import:com.usp.punya.client.widget">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
-    <ui:style>
-    </ui:style>
+	<g:HTMLPanel>
+		<style>
+			paper-icon-item {
+			position: relative;
+			overflow: hidden;
+			}
 
-    <mgwt:panel.flex.RootFlexPanel>
-        <mgwt:header.HeaderPanel>
-            <local:image.MenuImageButton ui:field="menuButton" />
-            <mgwt:panel.flex.FlexSpacer />
-            <mgwt:header.HeaderTitle>MGWT Basic SwipeMenu</mgwt:header.HeaderTitle>
-            <mgwt:panel.flex.FlexSpacer />
-            <mgwt:panel.flex.FixedSpacer />
-        </mgwt:header.HeaderPanel>
-
-        <mgwt:panel.scroll.ScrollPanel ui:field="scrollPanel" scrollingEnabledX="false">
-            <mgwt:list.celllist.CellList ui:field="cellList" />
-        </mgwt:panel.scroll.ScrollPanel>
-
-    </mgwt:panel.flex.RootFlexPanel>
-    
+			.toolbar
+			{
+			background: #4285f4 !important;
+			}
+			.header {
+			font-size: 200%;
+			margin-left: 50px;
+			background: #4285f4 !important;
+			}
+			.content {
+			padding:
+			15px;
+			}
+		</style>
+		<paper-drawer-panel ui:field="drawerPanel">
+			<div drawer="">
+				<paper-header-panel mode="seamed">
+					<paper-toolbar />
+					<paper-icon-item ui:field="menuClearAll">
+						<iron-icon icon="delete" />
+						<div>Clear All</div>
+						<paper-ripple />
+					</paper-icon-item>
+					<paper-icon-item ui:field="menuClearDone">
+						<iron-icon icon="clear" />
+						<div>Clear Done</div>
+						<paper-ripple />
+					</paper-icon-item>
+					<paper-icon-item ui:field="menuSettings">
+						<iron-icon icon="settings" />
+						<div>Settings</div>
+						<paper-ripple />
+					</paper-icon-item>
+					<paper-icon-item ui:field="menuAbout">
+						<iron-icon icon="help" />
+						<div>About</div>
+						<paper-ripple />
+					</paper-icon-item>
+				</paper-header-panel>
+			</div>
+			<div main="">
+				<paper-header-panel mode="seamed">
+					<paper-toolbar class="toolbar">
+						<paper-icon-button ui:field="menu" icon="more-vert"
+							paper-drawer-toggle="" />
+						<span class="header">Todo List</span>
+					</paper-toolbar>
+					<div ui:field="content" class="content vertical center-justified layout" />
+				</paper-header-panel>
+				<paper-fab ui:field="addButton" icon="add" title="add"
+					class="add" />
+			</div>
+		</paper-drawer-panel>
+	</g:HTMLPanel>
 </ui:UiBinder>

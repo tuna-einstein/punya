@@ -4,7 +4,6 @@ import com.google.gwt.core.shared.GWT;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.usp.punya.client.PunyaPlaceHistoryMapper.PunyaPlaceTokenizers;
-import com.usp.punya.client.navmenu.NavMenuActivityMapper;
 
 @GinModules(InjectorModule.class)
 public interface Injector extends Ginjector, PunyaPlaceTokenizers {
@@ -13,8 +12,6 @@ public interface Injector extends Ginjector, PunyaPlaceTokenizers {
   //  public EventBus getEventBus();
     
     public void injectEntryPoint(Main entryPoint);
-    
-    public NavMenuActivityMapper navMenuActivityMapper();
     
    // public BasicAuthHeaderDispatcherFilterFactory getAuthFactory();
 }
